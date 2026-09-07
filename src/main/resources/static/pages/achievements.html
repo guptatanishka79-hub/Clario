@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Achievements — Clario</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="sw-app-shell" id="swShellRoot"></div>
+
+  <template id="tpl-achievements">
+    <div class="sw-page-header d-flex justify-content-between align-items-start flex-wrap gap-2">
+      <div>
+        <h2>Achievements</h2>
+        <p>Document the wins worth remembering before you forget them.</p>
+      </div>
+      <button class="btn btn-primary" id="addAchievementBtn"><i class="fa-solid fa-plus me-1"></i> Add Achievement</button>
+    </div>
+    <div class="sw-card">
+      <div id="achievementsList"></div>
+      <div id="achievementsEmpty" class="sw-empty-state d-none">
+        <i class="fa-solid fa-trophy"></i>
+        <h6>No achievements yet</h6>
+        <p class="mb-3" style="font-size:13.5px;">Record your first professional achievement.</p>
+        <button class="btn btn-primary btn-sm" onclick="document.getElementById('addAchievementBtn').click()">Add Achievement</button>
+      </div>
+    </div>
+  </template>
+
+  <div class="modal fade" id="achievementModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="achievementModalTitle">Add Achievement</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <form id="achievementForm">
+          <div class="modal-body">
+            <input type="hidden" id="achievementId">
+            <div class="mb-3">
+              <label class="form-label">Title</label>
+              <input type="text" class="form-control" id="achievementTitle" required placeholder="e.g. Led migration to microservices">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Description</label>
+              <textarea class="form-control" id="achievementDescription" rows="3" placeholder="What did you do, and what was the impact?"></textarea>
+            </div>
+            <div class="row">
+              <div class="col-6 mb-3">
+                <label class="form-label">Date</label>
+                <input type="date" class="form-control" id="achievementDate">
+              </div>
+              <div class="col-6 mb-3">
+                <label class="form-label">Organization / Project</label>
+                <input type="text" class="form-control" id="achievementOrg">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Achievement</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/toast.js"></script>
+  <script src="/js/shell.js"></script>
+  <script src="/js/achievements.js"></script>
+</body>
+</html>

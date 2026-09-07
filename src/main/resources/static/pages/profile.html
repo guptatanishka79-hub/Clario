@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile — Clario</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="sw-app-shell" id="swShellRoot"></div>
+
+  <template id="tpl-profile">
+    <div class="sw-page-header">
+      <h2>Profile</h2>
+      <p>Keep your professional details current.</p>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-lg-4">
+        <div class="sw-card mb-3">
+          <div class="sw-card-body text-center">
+            <div class="sw-avatar mx-auto mb-3" style="width:64px;height:64px;font-size:22px;" id="profileAvatar"></div>
+            <h5 class="mb-1" id="profileNameDisplay">—</h5>
+            <p class="sw-text-muted mb-3" id="profileHeadlineDisplay" style="font-size: 13.5px;">—</p>
+            <div class="sw-eyebrow mb-1">Profile Completion</div>
+            <div class="sw-progress mb-2"><div class="sw-progress-bar" id="completionBar" style="width:0%;"></div></div>
+            <div class="fw-bold" id="completionPercent" style="color: var(--sw-indigo-600);">0%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="sw-card">
+          <div class="sw-card-header"><h6>Professional Details</h6></div>
+          <div class="sw-card-body">
+            <form id="profileForm">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Full Name</label>
+                  <input type="text" class="form-control" id="fullName">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" disabled>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Phone</label>
+                  <input type="text" class="form-control" id="phone" placeholder="+1 555 123 4567">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Location</label>
+                  <input type="text" class="form-control" id="location" placeholder="City, Country">
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Professional Headline</label>
+                <input type="text" class="form-control" id="headline" placeholder="e.g. Backend Developer specializing in Java">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Short Bio</label>
+                <textarea class="form-control" id="bio" rows="4" placeholder="Tell us a little about your background..."></textarea>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Years of Experience</label>
+                  <input type="number" min="0" max="60" class="form-control" id="yearsOfExperience">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Current Job Title</label>
+                  <input type="text" class="form-control" id="currentJobTitle" placeholder="e.g. Software Engineer II">
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary" id="saveProfileBtn">Save Changes</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/toast.js"></script>
+  <script src="/js/shell.js"></script>
+  <script src="/js/profile.js"></script>
+</body>
+</html>

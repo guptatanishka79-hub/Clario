@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings — Clario</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="sw-app-shell" id="swShellRoot"></div>
+
+  <template id="tpl-settings">
+    <div class="sw-page-header">
+      <h2>Settings</h2>
+      <p>Manage your account.</p>
+    </div>
+
+    <div class="sw-card mb-3">
+      <div class="sw-card-header"><h6>Account</h6></div>
+      <div class="sw-card-body">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <div class="sw-eyebrow mb-1">Full Name</div>
+            <div id="settingsName" style="font-size: 14.5px; color: var(--sw-navy-900);">—</div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="sw-eyebrow mb-1">Email</div>
+            <div id="settingsEmail" style="font-size: 14.5px; color: var(--sw-navy-900);">—</div>
+          </div>
+          <div class="col-md-6">
+            <div class="sw-eyebrow mb-1">Account Type</div>
+            <div id="settingsRole" style="font-size: 14.5px; color: var(--sw-navy-900);">—</div>
+          </div>
+          <div class="col-md-6">
+            <div class="sw-eyebrow mb-1">Account Status</div>
+            <div id="settingsStatus" style="font-size: 14.5px; color: var(--sw-navy-900);">—</div>
+          </div>
+        </div>
+        <hr class="sw-divider">
+        <p class="sw-text-muted mb-0" style="font-size: 13px;">To update your name, headline, or other professional details, visit your <a href="/pages/profile.html">Profile</a> page.</p>
+      </div>
+    </div>
+
+    <div class="sw-card">
+      <div class="sw-card-header"><h6>Session</h6></div>
+      <div class="sw-card-body d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <div>
+          <div class="fw-semibold" style="color: var(--sw-navy-900); font-size: 14px;">Log out of Clario</div>
+          <div class="sw-text-muted" style="font-size: 13px;">This will end your current session on this device.</div>
+        </div>
+        <button class="btn btn-outline-danger" id="settingsLogoutBtn">Log Out</button>
+      </div>
+    </div>
+  </template>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/toast.js"></script>
+  <script src="/js/shell.js"></script>
+  <script src="/js/settings.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In — Clario</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="sw-auth-shell">
+    <div class="sw-auth-visual">
+      <div class="d-flex align-items-center gap-2 mb-5">
+        <div class="sw-logo-mark">CL</div>
+        <span class="fw-bold fs-5 text-white">Clario</span>
+      </div>
+      <h2 class="text-white mb-3" style="font-size: 2rem;">Welcome back.</h2>
+      <p style="color: #aab4c9; max-width: 420px;">Log in to see your career readiness score, track skill progress, and manage your certifications.</p>
+      <div class="sw-card p-3 mt-5" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); max-width: 380px;">
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <i class="fa-solid fa-circle-info" style="color:#8b93ff;"></i>
+          <span class="fw-semibold text-white" style="font-size: 13px;">Demo credentials</span>
+        </div>
+        <div style="color:#c3cbdf; font-size: 12.5px; line-height: 1.7;">
+          User: arjun.mehta@clario.com<br>
+          Admin: priya.sharma@clario.com<br>
+          Password (all demo accounts): Password123!
+        </div>
+      </div>
+    </div>
+
+    <div class="sw-auth-form-wrap">
+      <div class="sw-auth-card">
+        <h3 class="mb-1">Log in to Clario</h3>
+        <p class="sw-text-muted mb-4" style="font-size: 14px;">Enter your credentials to continue.</p>
+
+        <div id="formAlert" class="alert alert-danger d-none" style="font-size: 13.5px; border-radius: 8px;"></div>
+
+        <form id="loginForm" novalidate>
+          <div class="mb-3">
+            <label class="form-label">Email address</label>
+            <div class="sw-input-icon-wrap">
+              <i class="fa-solid fa-envelope"></i>
+              <input type="email" class="form-control" id="email" placeholder="you@company.com" required>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <div class="sw-input-icon-wrap">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" class="form-control" id="password" placeholder="••••••••" required>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary w-100 mt-2" id="submitBtn">
+            <span id="submitLabel">Log In</span>
+          </button>
+        </form>
+
+        <p class="text-center sw-text-muted mt-4 mb-0" style="font-size: 13.5px;">
+          Don't have an account? <a href="/pages/register.html">Create one</a>
+        </p>
+        <p class="text-center mt-2 mb-0"><a href="/index.html" style="font-size: 13px;"><i class="fa-solid fa-arrow-left me-1"></i>Back to home</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/toast.js"></script>
+  <script>
+    // If already logged in, skip straight to the right dashboard.
+    (async () => {
+      try {
+        const me = await api.get('/api/auth/me');
+        window.location.href = me.role === 'ROLE_ADMIN' ? '/pages/admin-dashboard.html' : '/pages/dashboard.html';
+      } catch (e) { /* not logged in, stay here */ }
+    })();
+
+    const form = document.getElementById('loginForm');
+    const alertBox = document.getElementById('formAlert');
+    const submitBtn = document.getElementById('submitBtn');
+    const submitLabel = document.getElementById('submitLabel');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      alertBox.classList.add('d-none');
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      submitBtn.disabled = true;
+      submitLabel.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Logging in...';
+
+      try {
+        const params = new URLSearchParams();
+        params.set('username', email);
+        params.set('password', password);
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: params.toString(),
+        });
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          throw new Error(data.message || 'Invalid email or password');
+        }
+        const user = await res.json();
+        window.location.href = user.role === 'ROLE_ADMIN' ? '/pages/admin-dashboard.html' : '/pages/dashboard.html';
+      } catch (err) {
+        alertBox.textContent = err.message || 'Invalid email or password';
+        alertBox.classList.remove('d-none');
+        submitBtn.disabled = false;
+        submitLabel.textContent = 'Log In';
+      }
+    });
+  </script>
+</body>
+</html>

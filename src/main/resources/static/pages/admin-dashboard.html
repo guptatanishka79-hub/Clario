@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — Clario</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="sw-app-shell" id="swShellRoot"></div>
+
+  <template id="tpl-admin-dashboard">
+    <div class="sw-page-header">
+      <h2>Admin Dashboard</h2>
+      <p>Platform-wide overview of users, skills, and career roles.</p>
+    </div>
+
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-lg-3">
+        <div class="sw-stat-card">
+          <div class="sw-stat-icon sw-icon-indigo"><i class="fa-solid fa-users"></i></div>
+          <div class="sw-stat-value" id="statTotalUsers">—</div>
+          <div class="sw-stat-label">Total Users</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="sw-stat-card">
+          <div class="sw-stat-icon sw-icon-teal"><i class="fa-solid fa-user-shield"></i></div>
+          <div class="sw-stat-value" id="statTotalAdmins">—</div>
+          <div class="sw-stat-label">Administrators</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="sw-stat-card">
+          <div class="sw-stat-icon sw-icon-success"><i class="fa-solid fa-layer-group"></i></div>
+          <div class="sw-stat-value" id="statTotalSkills">—</div>
+          <div class="sw-stat-label">Total Skills</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="sw-stat-card">
+          <div class="sw-stat-icon sw-icon-warning"><i class="fa-solid fa-briefcase"></i></div>
+          <div class="sw-stat-value" id="statTotalRoles">—</div>
+          <div class="sw-stat-label">Career Roles</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-lg-6">
+        <div class="sw-card">
+          <div class="sw-card-header"><h6>Most Popular Skills</h6></div>
+          <div class="sw-card-body" id="popularSkillsBody"></div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="sw-card">
+          <div class="sw-card-header"><h6>Users by Target Role</h6></div>
+          <div class="sw-card-body" id="usersByRoleBody"></div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/toast.js"></script>
+  <script src="/js/shell.js"></script>
+  <script src="/js/admin-dashboard.js"></script>
+</body>
+</html>

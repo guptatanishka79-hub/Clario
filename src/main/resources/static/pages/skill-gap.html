@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skill Gap Analysis — Clario</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="sw-app-shell" id="swShellRoot"></div>
+
+  <template id="tpl-skill-gap">
+    <div class="sw-page-header">
+      <h2>Skill Gap Analysis</h2>
+      <p>A transparent comparison between your current skills and what your target role requires.</p>
+    </div>
+    <div id="gapContainer"></div>
+  </template>
+
+  <template id="tpl-no-goal">
+    <div class="sw-card">
+      <div class="sw-empty-state py-5">
+        <i class="fa-solid fa-flag"></i>
+        <h6>No career goal set yet</h6>
+        <p class="mb-3" style="font-size: 13.5px;">Set a target role to generate your skill-gap analysis.</p>
+        <a href="/pages/career-goals.html" class="btn btn-primary btn-sm">Set a Career Goal</a>
+      </div>
+    </div>
+  </template>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/toast.js"></script>
+  <script src="/js/shell.js"></script>
+  <script src="/js/skill-gap.js"></script>
+</body>
+</html>

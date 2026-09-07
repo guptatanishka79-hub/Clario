@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Goals — Clario</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="sw-app-shell" id="swShellRoot"></div>
+
+  <template id="tpl-career-goals">
+    <div class="sw-page-header">
+      <h2>Career Goals</h2>
+      <p>Choose a target role to see its required skills and your readiness.</p>
+    </div>
+
+    <div class="sw-card mb-4" id="currentGoalCard">
+      <div class="sw-card-body">
+        <div class="sw-skeleton" style="height: 60px;"></div>
+      </div>
+    </div>
+
+    <h6 class="mb-3" style="color: var(--sw-slate-700);">Available Roles</h6>
+    <div class="row g-3" id="rolesGrid"></div>
+  </template>
+
+  <!-- Role detail modal -->
+  <div class="modal fade" id="roleModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="roleModalTitle">Role</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p class="sw-text-muted" id="roleModalDescription"></p>
+          <div class="table-responsive">
+            <table class="sw-table">
+              <thead><tr><th>Required Skill</th><th>Required Level</th></tr></thead>
+              <tbody id="roleModalSkillsBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="setGoalBtn">Set as My Career Goal</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/toast.js"></script>
+  <script src="/js/shell.js"></script>
+  <script src="/js/career-goals.js"></script>
+</body>
+</html>

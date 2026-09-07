@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Clario</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="sw-app-shell" id="swShellRoot"></div>
+
+  <template id="tpl-dashboard">
+    <div class="sw-page-header d-flex justify-content-between align-items-start flex-wrap gap-2">
+      <div>
+        <h2>Welcome back, <span id="welcomeName"></span></h2>
+        <p>Here's where your career readiness stands today.</p>
+      </div>
+    </div>
+
+    <!-- Summary cards -->
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-lg-3">
+        <div class="sw-stat-card">
+          <div class="sw-stat-icon sw-icon-indigo"><i class="fa-solid fa-user"></i></div>
+          <div class="sw-stat-value" id="statProfile">—</div>
+          <div class="sw-stat-label">Profile Completion</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="sw-stat-card">
+          <div class="sw-stat-icon sw-icon-teal"><i class="fa-solid fa-bullseye"></i></div>
+          <div class="sw-stat-value" id="statReadiness">—</div>
+          <div class="sw-stat-label">Career Readiness</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="sw-stat-card">
+          <div class="sw-stat-icon sw-icon-success"><i class="fa-solid fa-layer-group"></i></div>
+          <div class="sw-stat-value" id="statSkills">—</div>
+          <div class="sw-stat-label">Total Skills</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="sw-stat-card">
+          <div class="sw-stat-icon sw-icon-warning"><i class="fa-solid fa-certificate"></i></div>
+          <div class="sw-stat-value" id="statCerts">—</div>
+          <div class="sw-stat-label">Certifications</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-3">
+      <!-- Career goal card -->
+      <div class="col-lg-7">
+        <div class="sw-card mb-3" id="careerGoalCard">
+          <div class="sw-card-header">
+            <h6>Career Goal</h6>
+            <a href="/pages/career-goals.html" class="btn btn-outline-primary btn-sm">Manage Goal</a>
+          </div>
+          <div class="sw-card-body" id="careerGoalBody">
+            <div class="sw-skeleton" style="height: 70px;"></div>
+          </div>
+        </div>
+
+        <div class="sw-card">
+          <div class="sw-card-header">
+            <h6>Skill Progress</h6>
+          </div>
+          <div class="sw-card-body">
+            <canvas id="progressChart" height="230"></canvas>
+            <div id="progressChartEmpty" class="sw-empty-state d-none">
+              <i class="fa-solid fa-chart-line"></i>
+              <h6>No progress history yet</h6>
+              <p class="mb-0" style="font-size: 13.5px;">Add skills and update your proficiency to see a trend line here.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skill gap + activity -->
+      <div class="col-lg-5">
+        <div class="sw-card mb-3">
+          <div class="sw-card-header"><h6>Skill Gap Snapshot</h6></div>
+          <div class="sw-card-body" id="skillGapSnapshot">
+            <div class="sw-skeleton" style="height: 90px;"></div>
+          </div>
+        </div>
+
+        <div class="sw-card">
+          <div class="sw-card-header"><h6>Recent Activity</h6></div>
+          <div class="sw-card-body p-0" id="activityList">
+            <div class="p-4"><div class="sw-skeleton" style="height: 20px; margin-bottom: 10px;"></div><div class="sw-skeleton" style="height: 20px; width: 70%;"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/toast.js"></script>
+  <script src="/js/shell.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

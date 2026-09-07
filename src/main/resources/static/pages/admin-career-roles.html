@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Roles — Clario Admin</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="sw-app-shell" id="swShellRoot"></div>
+
+  <template id="tpl-admin-roles">
+    <div class="sw-page-header d-flex justify-content-between align-items-start flex-wrap gap-2">
+      <div>
+        <h2>Career Roles</h2>
+        <p>Define target roles and the skills required to reach them.</p>
+      </div>
+      <button class="btn btn-primary" id="addRoleBtn"><i class="fa-solid fa-plus me-1"></i> Add Career Role</button>
+    </div>
+
+    <div class="row g-3" id="rolesGrid"></div>
+  </template>
+
+  <!-- Add/Edit role modal -->
+  <div class="modal fade" id="roleModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="roleModalTitle">Add Career Role</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <form id="roleForm">
+          <div class="modal-body">
+            <input type="hidden" id="roleId">
+            <div class="mb-3">
+              <label class="form-label">Role Name</label>
+              <input type="text" class="form-control" id="roleName" required placeholder="e.g. Java Backend Developer">
+            </div>
+            <div class="mb-1">
+              <label class="form-label">Description</label>
+              <textarea class="form-control" id="roleDescription" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Role</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Manage required skills modal -->
+  <div class="modal fade" id="requiredSkillsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Required Skills — <span id="requiredSkillsRoleName"></span></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="addRequiredSkillForm" class="d-flex gap-2 mb-3">
+            <select class="form-select" id="requiredSkillSelect" required></select>
+            <select class="form-select" id="requiredSkillLevel" style="max-width: 160px;" required>
+              <option value="BEGINNER">Beginner</option>
+              <option value="INTERMEDIATE">Intermediate</option>
+              <option value="ADVANCED">Advanced</option>
+              <option value="EXPERT">Expert</option>
+            </select>
+            <button type="submit" class="btn btn-primary text-nowrap">Add</button>
+          </form>
+          <div class="table-responsive">
+            <table class="sw-table">
+              <thead><tr><th>Skill</th><th>Required Level</th><th></th></tr></thead>
+              <tbody id="requiredSkillsBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/toast.js"></script>
+  <script src="/js/shell.js"></script>
+  <script src="/js/admin-career-roles.js"></script>
+</body>
+</html>
